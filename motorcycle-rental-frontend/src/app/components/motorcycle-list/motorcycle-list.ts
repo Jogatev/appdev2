@@ -109,14 +109,14 @@ export class MotorcycleListComponent implements OnInit {
   }
 
   getAvailabilityClass(motorcycle: Motorcycle): string {
-    return motorcycle.isAvailable ? 'available' : 'unavailable';
+    return motorcycle.available ? 'available' : 'unavailable';
   }
 
   getAvailabilityText(motorcycle: Motorcycle): string {
-    return motorcycle.isAvailable ? 'Available' : 'Not Available';
+    return motorcycle.available ? 'Available' : 'Not Available';
   }
 
   formatPrice(price: string): string {
-    return `$${price}`;
+    return `₱${price}`;
   }
 }

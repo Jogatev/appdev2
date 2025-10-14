@@ -11,7 +11,7 @@ export interface Motorcycle {
   hourlyRate: string; // Price per hour
   dailyRate: string; // Price per day
   weeklyRate: string; // Price per week
-  isAvailable: boolean;
+  available: boolean;
   bikeCondition: string; // Excellent, Good, Fair
   features: string; // ABS, GPS, Bluetooth, etc.
   color: string;

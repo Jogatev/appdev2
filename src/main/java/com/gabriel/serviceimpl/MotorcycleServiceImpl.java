@@ -23,6 +23,29 @@ public class MotorcycleServiceImpl implements MotorcycleService {
 
     Transform<Motorcycle, MotorcycleData> transformMotorcycle = new Transform<>(MotorcycleData.class);
 
+    private Motorcycle manualTransform(MotorcycleData data) {
+        Motorcycle motorcycle = new Motorcycle();
+        motorcycle.setId(data.getId());
+        motorcycle.setName(data.getName());
+        motorcycle.setDescription(data.getDescription());
+        motorcycle.setBikeType(data.getBikeType());
+        motorcycle.setBrand(data.getBrand());
+        motorcycle.setEngineSize(data.getEngineSize());
+        motorcycle.setFuelType(data.getFuelType());
+        motorcycle.setTransmission(data.getTransmission());
+        motorcycle.setHourlyRate(data.getHourlyRate());
+        motorcycle.setDailyRate(data.getDailyRate());
+        motorcycle.setWeeklyRate(data.getWeeklyRate());
+        motorcycle.setAvailable(data.isAvailable());
+        motorcycle.setBikeCondition(data.getBikeCondition());
+        motorcycle.setFeatures(data.getFeatures());
+        motorcycle.setColor(data.getColor());
+        motorcycle.setYear(data.getYear());
+        motorcycle.setLicensePlate(data.getLicensePlate());
+        motorcycle.setMileage(data.getMileage());
+        motorcycle.setImageFile(data.getImageFile());
+        return motorcycle;
+    }
 
     public List<Motorcycle> getAllMotorcycles() {
         List<MotorcycleData>motorcycleDataRecords = new ArrayList<>();
@@ -34,7 +57,7 @@ public class MotorcycleServiceImpl implements MotorcycleService {
         while(it.hasNext()) {
             Motorcycle motorcycle = new Motorcycle();
             MotorcycleData motorcycleData = it.next();
-            motorcycle = transformMotorcycleData.transform(motorcycleData);
+            motorcycle = manualTransform(motorcycleData);
             motorcycles.add(motorcycle);
         }
         return motorcycles;
@@ -75,7 +98,7 @@ public class MotorcycleServiceImpl implements MotorcycleService {
                 motorcycles = new ArrayList<Motorcycle>();
                 mapMotorcycles.put(motorcycleData.getBikeType(), motorcycles);
             }
-            motorcycle = transformMotorcycleData.transform(motorcycleData);
+            motorcycle = manualTransform(motorcycleData);
             motorcycles.add(motorcycle);
         }
         return mapMotorcycles;
