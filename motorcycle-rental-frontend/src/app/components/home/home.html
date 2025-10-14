@@ -1,0 +1,186 @@
+<div class="home-container">
+  <!-- Welcome Section -->
+  <div class="welcome-section text-center py-5">
+    <div class="container">
+      <h1 class="display-4 fw-bold mb-4">
+        <i class="fas fa-motorcycle me-3"></i>
+        Welcome to Bon Rental
+      </h1>
+      <p class="lead mb-4">Experience the thrill of the open road with our premium motorcycle rental service</p>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="feature-card">
+                <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                <h5>Flexible Rentals</h5>
+                <p>Hourly, daily, or weekly rental options to fit your schedule</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="feature-card">
+                <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                <h5>Fully Insured</h5>
+                <p>All motorcycles come with comprehensive insurance coverage</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="feature-card">
+                <i class="fas fa-tools fa-3x text-primary mb-3"></i>
+                <h5>Well Maintained</h5>
+                <p>Regular maintenance ensures safe and reliable rides</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Motorcycles Section -->
+  <div class="featured-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">
+        <i class="fas fa-star me-2"></i>
+        Featured Motorcycles
+      </h2>
+      
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-3">Loading featured motorcycles...</p>
+      </div>
+
+      <!-- Featured Motorcycles Grid -->
+      <div *ngIf="!isLoading" class="row">
+        <div *ngFor="let motorcycle of featuredMotorcycles" class="col-lg-4 col-md-6 mb-4">
+          <div class="card featured-card h-100">
+            <div class="position-relative">
+              <img 
+                [src]="motorcycle.imageFile || 'https://via.placeholder.com/300x200/007bff/ffffff?text=Motorcycle'"
+                [alt]="motorcycle.name"
+                class="card-img-top featured-image">
+              <span class="badge bg-success position-absolute top-0 end-0 m-2">
+                Available
+              </span>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{motorcycle.name}}</h5>
+              <p class="card-text text-muted">{{motorcycle.brand}} • {{motorcycle.engineSize}}</p>
+              <p class="card-text">{{motorcycle.description}}</p>
+              
+              <div class="motorcycle-info mb-3">
+                <div class="row text-center">
+                  <div class="col-6">
+                    <small class="text-muted">Type</small>
+                    <div class="fw-bold">{{motorcycle.bikeType}}</div>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-muted">Fuel</small>
+                    <div class="fw-bold">{{motorcycle.fuelType}}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pricing-info mb-3">
+                <div class="row text-center">
+                  <div class="col-4">
+                    <small class="text-muted">Hourly</small>
+                    <div class="fw-bold text-primary">${{motorcycle.hourlyRate}}</div>
+                  </div>
+                  <div class="col-4">
+                    <small class="text-muted">Daily</small>
+                    <div class="fw-bold text-primary">${{motorcycle.dailyRate}}</div>
+                  </div>
+                  <div class="col-4">
+                    <small class="text-muted">Weekly</small>
+                    <div class="fw-bold text-primary">${{motorcycle.weeklyRate}}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-auto">
+                <a routerLink="/motorcycles" class="btn btn-primary w-100">
+                  <i class="fas fa-eye me-2"></i>
+                  View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View All Button -->
+      <div *ngIf="!isLoading" class="text-center mt-4">
+        <a routerLink="/motorcycles" class="btn btn-outline-primary btn-lg">
+          <i class="fas fa-motorcycle me-2"></i>
+          View All Motorcycles
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Section -->
+  <div class="stats-section py-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-3 col-sm-6 mb-4">
+          <div class="stat-card">
+            <i class="fas fa-motorcycle fa-3x text-primary mb-3"></i>
+            <h3 class="fw-bold">{{featuredMotorcycles.length}}+</h3>
+            <p class="text-muted">Motorcycles Available</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <div class="stat-card">
+            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+            <h3 class="fw-bold">500+</h3>
+            <p class="text-muted">Happy Customers</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <div class="stat-card">
+            <i class="fas fa-star fa-3x text-primary mb-3"></i>
+            <h3 class="fw-bold">4.8</h3>
+            <p class="text-muted">Average Rating</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <div class="stat-card">
+            <i class="fas fa-calendar-check fa-3x text-primary mb-3"></i>
+            <h3 class="fw-bold">24/7</h3>
+            <p class="text-muted">Service Available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action Section -->
+  <div class="cta-section py-5 bg-primary text-white">
+    <div class="container text-center">
+      <h2 class="mb-4">Ready for Your Next Adventure?</h2>
+      <p class="lead mb-4">Book your motorcycle rental today and hit the open road!</p>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-6">
+              <a routerLink="/motorcycles" class="btn btn-light btn-lg w-100 mb-2">
+                <i class="fas fa-motorcycle me-2"></i>
+                Browse Motorcycles
+              </a>
+            </div>
+            <div class="col-6">
+              <a routerLink="/contact" class="btn btn-outline-light btn-lg w-100 mb-2">
+                <i class="fas fa-phone me-2"></i>
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

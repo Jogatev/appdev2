@@ -9,3 +9,4 @@ public interface RentalDataRepository extends CrudRepository<RentalData, Integer
     List<RentalData> findAllByCustomerId(String customerId);
     List<RentalData> findAllByRentalStatus(String rentalStatus);
 }
+
