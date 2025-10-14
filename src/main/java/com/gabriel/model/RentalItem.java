@@ -1,20 +1,11 @@
-package com.gabriel.entity;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+package com.gabriel.model;
 import com.gabriel.enums.RentalItemStatus;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Data
-@Entity
-@Table(name = "rental_item_data")
-public class RentalItemData {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class RentalItem {
     int id;
     int rentalId;
     int customerId;
@@ -37,19 +28,11 @@ public class RentalItemData {
     RentalItemStatus status;
     Date rentalStartDate;
     Date rentalEndDate;
+    Date created;
+    Date lastUpdated;
+    String notes;
     String pickupLocation;
     String returnLocation;
     double startMileage;
     double endMileage;
-    String notes;
-
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
-    private Date lastUpdated;
-
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
-    private Date created;
 }

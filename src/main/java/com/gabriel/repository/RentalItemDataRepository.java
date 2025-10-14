@@ -11,4 +11,5 @@ public interface RentalItemDataRepository extends CrudRepository<RentalItemData,
     List<RentalItemData> findAllByCustomerId(Integer customerId);
     List<RentalItemData> findAllByRentalId(Integer rentalId);
     List<RentalItemData> findAllByStatus(RentalItemStatus status);
+    List<RentalItemData> findAllByMotorcycleId(Integer motorcycleId);
 }
