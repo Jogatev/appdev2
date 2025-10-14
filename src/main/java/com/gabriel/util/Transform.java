@@ -40,8 +40,11 @@ public class Transform< V, K>{
                 String methodName = method.getName();
                 if(methodName.startsWith("set")){
                     methodName = methodName.replaceFirst("s", "g");
-                    setArgs[0] =  methodMap.get(methodName);
-                    method.invoke(k, setArgs);
+                    Object value = methodMap.get(methodName);
+                    if(value != null) {
+                        setArgs[0] = value;
+                        method.invoke(k, setArgs);
+                    }
                 }
             }
             return k;
