@@ -1,0 +1,170 @@
+<!-- Rental Confirmation Modal -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">
+          <i class="fas fa-check-circle me-2"></i>
+          Booking Confirmed!
+        </h5>
+        <button type="button" class="btn-close btn-close-white" (click)="onClose()"></button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Success Message -->
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">
+            <i class="fas fa-motorcycle me-2"></i>
+            Your rental has been confirmed!
+          </h4>
+          <p class="mb-0">Thank you for choosing Bon Rental. Your motorcycle rental is now confirmed.</p>
+        </div>
+
+        <!-- Rental Details -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-receipt me-2"></i>Booking Details</h6>
+              </div>
+              <div class="card-body">
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Rental ID:</strong></div>
+                  <div class="col-7">{{rentalId}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Confirmation #:</strong></div>
+                  <div class="col-7">{{confirmationNumber}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Motorcycle:</strong></div>
+                  <div class="col-7">{{motorcycle?.brand}} {{motorcycle?.name}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Duration:</strong></div>
+                  <div class="col-7">{{booking?.rentalDuration | titlecase}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Start Date:</strong></div>
+                  <div class="col-7">{{booking?.rentalStartDate | date:'medium'}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>End Date:</strong></div>
+                  <div class="col-7">{{booking?.rentalEndDate | date:'medium'}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Pickup:</strong></div>
+                  <div class="col-7">{{booking?.pickupLocation}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Return:</strong></div>
+                  <div class="col-7">{{booking?.returnLocation}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-user me-2"></i>Customer Information</h6>
+              </div>
+              <div class="card-body">
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Name:</strong></div>
+                  <div class="col-7">{{booking?.customerName}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Email:</strong></div>
+                  <div class="col-7">{{booking?.customerEmail}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Phone:</strong></div>
+                  <div class="col-7">{{booking?.customerPhone}}</div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-5"><strong>Payment:</strong></div>
+                  <div class="col-7">{{booking?.paymentMethod | titlecase}}</div>
+                </div>
+                <hr>
+                  <div class="row">
+                    <div class="col-5"><strong>Total Amount:</strong></div>
+                    <div class="col-7 h5 text-primary mb-0">₱{{booking?.totalAmount?.toFixed(2) || '0.00'}}</div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-arrow-up me-2"></i>Pickup Instructions</h6>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                  <li *ngFor="let instruction of getPickupInstructions()" class="mb-2">
+                    <i class="fas fa-check text-success me-2"></i>
+                    {{instruction}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-arrow-down me-2"></i>Return Instructions</h6>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                  <li *ngFor="let instruction of getReturnInstructions()" class="mb-2">
+                    <i class="fas fa-check text-success me-2"></i>
+                    {{instruction}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <h6 class="mb-0"><i class="fas fa-phone me-2"></i>Need Help?</h6>
+          </div>
+          <div class="card-body">
+            <div class="row text-center">
+              <div class="col-md-4">
+                <i class="fas fa-phone fa-2x text-primary mb-2"></i>
+                <div><strong>Phone</strong></div>
+                <div>+63 2 8888 9999</div>
+              </div>
+              <div class="col-md-4">
+                <i class="fas fa-envelope fa-2x text-primary mb-2"></i>
+                <div><strong>Email</strong></div>
+                <div>support@bonrental.ph</div>
+              </div>
+              <div class="col-md-4">
+                <i class="fas fa-clock fa-2x text-primary mb-2"></i>
+                <div><strong>Hours</strong></div>
+                <div>24/7 Support</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" (click)="onPrintReceipt()">
+          <i class="fas fa-print me-2"></i>Print Receipt
+        </button>
+        <button type="button" class="btn btn-success" (click)="onClose()">
+          <i class="fas fa-home me-2"></i>Back to Home
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

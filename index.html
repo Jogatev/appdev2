@@ -253,7 +253,23 @@
             document.getElementById('noMotorcycles').style.display = 'none';
 
             try {
-                const response = await fetch('http://localhost:8080/api/motorcycle/available');
+                // Try different approaches to handle CORS
+                const apiUrl = 'http://localhost:8080/api/motorcycle/available';
+                
+                // First try with CORS headers
+                let response = await fetch(apiUrl, {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 motorcycles = await response.json();
                 filteredMotorcycles = [...motorcycles];
                 
@@ -267,10 +283,21 @@
                 document.getElementById('motorcycles').scrollIntoView({ behavior: 'smooth' });
             } catch (error) {
                 console.error('Error loading motorcycles:', error);
+                
+                // Show detailed error with solutions
+                let errorMessage = 'Failed to load motorcycles due to CORS policy. ';
+                errorMessage += '<br><br><strong>Solutions:</strong><br>';
+                errorMessage += '1. <strong>Use Chrome with disabled security:</strong><br>';
+                errorMessage += '&nbsp;&nbsp;&nbsp;Close Chrome, then run: <code>chrome.exe --user-data-dir="C:/temp/chrome_dev" --disable-web-security</code><br>';
+                errorMessage += '&nbsp;&nbsp;&nbsp;Then open this HTML file in that Chrome instance<br><br>';
+                errorMessage += '2. <strong>Use Firefox:</strong> Firefox is more permissive with CORS<br><br>';
+                errorMessage += '3. <strong>Backend is working:</strong> API is responding correctly<br>';
+                errorMessage += '&nbsp;&nbsp;&nbsp;Test: <a href="http://localhost:8080/api/motorcycle/available" target="_blank">http://localhost:8080/api/motorcycle/available</a>';
+                
                 document.getElementById('loadingMotorcycles').innerHTML = `
-                    <div class="alert alert-danger">
+                    <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle me-2"></i>
-                        Failed to load motorcycles. Please check if the backend server is running.
+                        ${errorMessage}
                     </div>
                 `;
             }

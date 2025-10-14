@@ -1,0 +1,198 @@
+<!-- Rental Booking Modal -->
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">
+          <i class="fas fa-motorcycle me-2"></i>
+          Book {{motorcycle?.name}}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" (click)="onCancel()"></button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Motorcycle Info -->
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <img [src]="motorcycle?.imageFile || 'https://via.placeholder.com/200x150/007bff/ffffff?text=Motorcycle'" 
+                 class="img-fluid rounded" alt="{{motorcycle?.name}}">
+          </div>
+          <div class="col-md-8">
+            <h4>{{motorcycle?.brand}} {{motorcycle?.name}}</h4>
+            <p class="text-muted">{{motorcycle?.description}}</p>
+            <div class="row">
+              <div class="col-4">
+                <small class="text-muted">Engine</small>
+                <div class="fw-bold">{{motorcycle?.engineSize}}</div>
+              </div>
+              <div class="col-4">
+                <small class="text-muted">Type</small>
+                <div class="fw-bold">{{motorcycle?.bikeType}}</div>
+              </div>
+              <div class="col-4">
+                <small class="text-muted">Transmission</small>
+                <div class="fw-bold">{{motorcycle?.transmission}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Form -->
+        <form (ngSubmit)="onSubmit()">
+          <!-- Customer Information -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h6 class="mb-0"><i class="fas fa-user me-2"></i>Customer Information</h6>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Full Name *</label>
+                  <input type="text" class="form-control" [(ngModel)]="booking.customerName" 
+                         name="customerName" required placeholder="Enter your full name">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Email Address *</label>
+                  <input type="email" class="form-control" [(ngModel)]="booking.customerEmail" 
+                         name="customerEmail" required placeholder="your.email@example.com">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Phone Number *</label>
+                  <input type="tel" class="form-control" [(ngModel)]="booking.customerPhone" 
+                         name="customerPhone" required placeholder="+63 912 345 6789">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Payment Method *</label>
+                  <select class="form-select" [(ngModel)]="booking.paymentMethod" name="paymentMethod" required>
+                    <option *ngFor="let method of paymentMethods" [value]="method.value">
+                      {{method.label}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rental Details -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h6 class="mb-0"><i class="fas fa-calendar me-2"></i>Rental Details</h6>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Rental Duration *</label>
+                  <select class="form-select" [(ngModel)]="booking.rentalDuration" 
+                          name="rentalDuration" (change)="onDurationChange()" required>
+                    <option *ngFor="let duration of rentalDurations" [value]="duration.value">
+                      {{duration.label}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Start Date *</label>
+                  <input type="date" class="form-control" [(ngModel)]="booking.rentalStartDate" 
+                         name="rentalStartDate" [min]="getMinDate()" [max]="getMaxDate()" 
+                         (change)="onDateChange()" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">End Date *</label>
+                  <input type="date" class="form-control" [(ngModel)]="booking.rentalEndDate" 
+                         name="rentalEndDate" [min]="getMinDate()" [max]="getMaxDate()" 
+                         (change)="onDateChange()" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Pickup Location *</label>
+                  <select class="form-select" [(ngModel)]="booking.pickupLocation" name="pickupLocation" required>
+                    <option *ngFor="let location of locations" [value]="location">
+                      {{location}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Return Location *</label>
+                  <select class="form-select" [(ngModel)]="booking.returnLocation" name="returnLocation" required>
+                    <option *ngFor="let location of locations" [value]="location">
+                      {{location}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">Special Requests</label>
+                  <textarea class="form-control" [(ngModel)]="booking.specialRequests" 
+                            name="specialRequests" rows="3" 
+                            placeholder="Any special requests or additional information..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pricing Summary -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h6 class="mb-0"><i class="fas fa-calculator me-2"></i>Pricing Summary</h6>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Hourly Rate:</span>
+                    <span>₱{{motorcycle?.hourlyRate}}</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Daily Rate:</span>
+                    <span>₱{{motorcycle?.dailyRate}}</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Weekly Rate:</span>
+                    <span>₱{{motorcycle?.weeklyRate}}</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Selected Duration:</span>
+                    <span class="fw-bold">{{getDurationLabel()}}</span>
+                  </div>
+                  <hr>
+                  <div class="d-flex justify-content-between">
+                    <span class="h5 mb-0">Total Amount:</span>
+                    <span class="h5 mb-0 text-primary">₱{{booking.totalAmount.toFixed(2)}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terms and Conditions -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h6 class="mb-0"><i class="fas fa-file-contract me-2"></i>Terms & Conditions</h6>
+            </div>
+            <div class="card-body">
+              <div class="small text-muted">
+                <ul class="mb-0">
+                  <li>Valid driver's license required for pickup</li>
+                  <li>Security deposit of ₱5,000 required (refundable)</li>
+                  <li>Fuel tank must be returned at same level</li>
+                  <li>Late return fees apply: ₱500 per hour</li>
+                  <li>Damage charges will be assessed upon return</li>
+                  <li>Cancellation policy: Free up to 24 hours before rental</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+          <i class="fas fa-times me-2"></i>Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" 
+                [disabled]="!isFormValid()">
+          <i class="fas fa-check me-2"></i>Confirm Booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

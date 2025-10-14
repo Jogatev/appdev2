@@ -189,3 +189,20 @@
     </div>
   </div>
 </div>
+
+<!-- Rental Booking Modal -->
+<app-rental-booking 
+  *ngIf="showBookingModal"
+  [motorcycle]="selectedMotorcycle"
+  (bookingSubmitted)="onBookingSubmitted($event)"
+  (bookingCancelled)="onBookingCancelled()">
+</app-rental-booking>
+
+<!-- Rental Confirmation Modal -->
+<app-rental-confirmation 
+  *ngIf="showConfirmationModal"
+  [booking]="currentBooking"
+  [motorcycle]="selectedMotorcycle"
+  (confirmationClosed)="onConfirmationClosed()"
+  (printReceipt)="onPrintReceipt()">
+</app-rental-confirmation>

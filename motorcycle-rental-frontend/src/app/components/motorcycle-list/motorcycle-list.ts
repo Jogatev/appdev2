@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MotorcycleRentalService } from '../../services/motorcycle-rental.service';
 import { Motorcycle, MotorcycleCategory } from '../../models/motorcycle.models';
+import { RentalBookingComponent, RentalBooking } from '../rental-booking/rental-booking';
+import { RentalConfirmationComponent } from '../rental-confirmation/rental-confirmation';
 
 @Component({
   selector: 'app-motorcycle-list',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RentalBookingComponent, RentalConfirmationComponent],
   templateUrl: './motorcycle-list.html',
   styleUrls: ['./motorcycle-list.css']
 })
@@ -18,6 +20,12 @@ export class MotorcycleListComponent implements OnInit {
   searchTerm: string = '';
   isLoading = true;
   error: string | null = null;
+
+  // Booking state
+  showBookingModal = false;
+  showConfirmationModal = false;
+  selectedMotorcycle: Motorcycle | null = null;
+  currentBooking: RentalBooking | null = null;
 
   constructor(private motorcycleRentalService: MotorcycleRentalService) {}
 
@@ -103,9 +111,29 @@ export class MotorcycleListComponent implements OnInit {
   }
 
   rentMotorcycle(motorcycle: Motorcycle) {
-    // TODO: Implement rental logic
-    console.log('Renting motorcycle:', motorcycle);
-    alert(`Renting ${motorcycle.name} - ${motorcycle.brand} ${motorcycle.engineSize}`);
+    this.selectedMotorcycle = motorcycle;
+    this.showBookingModal = true;
+  }
+
+  onBookingSubmitted(booking: RentalBooking) {
+    this.currentBooking = booking;
+    this.showBookingModal = false;
+    this.showConfirmationModal = true;
+  }
+
+  onBookingCancelled() {
+    this.showBookingModal = false;
+    this.selectedMotorcycle = null;
+  }
+
+  onConfirmationClosed() {
+    this.showConfirmationModal = false;
+    this.currentBooking = null;
+    this.selectedMotorcycle = null;
+  }
+
+  onPrintReceipt() {
+    console.log('Printing receipt for booking:', this.currentBooking);
   }
 
   getAvailabilityClass(motorcycle: Motorcycle): string {
