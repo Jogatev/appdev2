@@ -1,145 +1,357 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>SUPER/BIGBIKE RENTAL SHOP</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-  <div class="container-fluid">
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <i class="fas fa-motorcycle me-2"></i>
-          <strong>{{title}}</strong>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-home me-1"></i>
-                Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#motorcycles">
-                <i class="fas fa-motorcycle me-1"></i>
-                Motorcycles
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#dashboard">
-                <i class="fas fa-tachometer-alt me-1"></i>
-                Dashboard
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">
-                <i class="fas fa-phone me-1"></i>
-                Contact
-              </a>
-            </li>
-          </ul>
-    </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="hero-section bg-primary text-white py-5">
-      <div class="container text-center">
-        <h1 class="display-4 fw-bold mb-3">
-          <i class="fas fa-motorcycle me-3"></i>
-          Bon Rental
-        </h1>
-        <p class="lead mb-4">Rent premium motorcycles for your adventure</p>
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <div class="row text-center">
-              <div class="col-md-4 mb-3">
-                <div class="feature-box">
-                  <i class="fas fa-clock fa-2x mb-2"></i>
-                  <h5>Hourly Rentals</h5>
-                  <p>Perfect for short trips</p>
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <div class="feature-box">
-                  <i class="fas fa-calendar-day fa-2x mb-2"></i>
-                  <h5>Daily Rentals</h5>
-                  <p>Great for day adventures</p>
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <div class="feature-box">
-                  <i class="fas fa-calendar-week fa-2x mb-2"></i>
-                  <h5>Weekly Rentals</h5>
-                  <p>Extended touring options</p>
-                </div>
-              </div>
+<!-- Header -->
+<header class="bg-primary text-white py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="mb-0">
+                    <i class="fas fa-motorcycle me-2"></i>
+                    {{title}}
+                </h1>
+                <p class="mb-0">Your trusted motorcycle rental partner</p>
             </div>
-          </div>
-      </div>
-    </div>
-  </div>
-
-    <!-- Main Content -->
-    <div class="container mt-4">
-      <!-- Simple Home Content -->
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h2 class="mb-0">
-                <i class="fas fa-motorcycle me-2"></i>
-                Welcome to Bon Rental
-              </h2>
+            <div class="col-md-6 text-md-end">
+                <div class="d-flex justify-content-md-end gap-3">
+                    <span class="badge bg-success fs-6">
+                        <i class="fas fa-check-circle me-1"></i>
+                        Available 24/7
+                    </span>
+                    <span class="badge bg-info fs-6">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        Fully Insured
+                    </span>
+                </div>
             </div>
-            <div class="card-body">
-              <p class="lead">Your premier motorcycle rental service in the Philippines</p>
-              <div class="row">
-                <div class="col-md-4 mb-3">
-                  <div class="text-center">
-                    <i class="fas fa-clock fa-3x text-primary mb-3"></i>
-                    <h5>Hourly Rentals</h5>
-                    <p>Perfect for short trips around the city</p>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                  <div class="text-center">
-                    <i class="fas fa-calendar-day fa-3x text-success mb-3"></i>
-                    <h5>Daily Rentals</h5>
-                    <p>Great for day adventures and tours</p>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                  <div class="text-center">
-                    <i class="fas fa-calendar-week fa-3x text-warning mb-3"></i>
-                    <h5>Weekly Rentals</h5>
-                    <p>Extended touring options</p>
-                  </div>
-    </div>
-      </div>
-              <div class="text-center mt-4">
-                <a href="/motorcycles" class="btn btn-primary btn-lg">
-                  <i class="fas fa-motorcycle me-2"></i>
-                  Browse Motorcycles
-        </a>
-      </div>
-    </div>
-  </div>
         </div>
-      </div>
     </div>
-  </div>
+</header>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<!-- Main Content -->
+<div class="container mt-4">
+    <!-- Search and Filter Section -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Search motorcycles by name, brand, or type..."
+                    [(ngModel)]="searchTerm"
+                    (input)="onSearchChange($event)">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <select 
+                class="form-select" 
+                [(ngModel)]="selectedCategory"
+                (change)="onCategoryChange($event)">
+                <option value="all">All Categories</option>
+                <option value="Sport">Sport Bikes</option>
+                <option value="Cruiser">Cruiser</option>
+                <option value="Touring">Touring</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Standard">Standard</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-3">Loading motorcycles...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !isLoading" class="alert alert-danger" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        {{error}}
+        <button class="btn btn-outline-danger btn-sm ms-3" (click)="loadMotorcycles()">
+            <i class="fas fa-redo me-1"></i>
+            Retry
+        </button>
+    </div>
+
+    <!-- Motorcycle Grid -->
+    <div *ngIf="!isLoading && !error && filteredMotorcycles.length > 0" class="row">
+        <div *ngFor="let motorcycle of filteredMotorcycles; trackBy: trackByMotorcycleId" class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="position-relative">
+                    <img 
+                        [src]="motorcycle.imageFile || 'https://via.placeholder.com/300x200?text=No+Image'" 
+                        class="card-img-top" 
+                        [alt]="motorcycle.name"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="position-absolute top-0 end-0 m-2">
+                        <span class="badge" [class]="motorcycle.available ? 'bg-success' : 'bg-danger'">
+                            {{motorcycle.available ? 'Available' : 'Unavailable'}}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{motorcycle.brand}} {{motorcycle.name}}</h5>
+                    <p class="card-text text-muted small">{{motorcycle.description}}</p>
+                    
+                    <div class="mt-auto">
+                        <div class="row text-center mb-3">
+                            <div class="col-4">
+                                <small class="text-muted d-block">Hourly</small>
+                                <strong class="text-primary">₱{{motorcycle.hourlyRate}}</strong>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-muted d-block">Daily</small>
+                                <strong class="text-primary">₱{{motorcycle.dailyRate}}</strong>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-muted d-block">Weekly</small>
+                                <strong class="text-primary">₱{{motorcycle.weeklyRate}}</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button 
+                                class="btn btn-primary" 
+                                [disabled]="!motorcycle.available"
+                                (click)="rentMotorcycle(motorcycle)">
+                                <i class="fas fa-calendar-plus me-1"></i>
+                                {{motorcycle.available ? 'Rent Now' : 'Not Available'}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer bg-light">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <small class="text-muted d-block">{{motorcycle.engineSize}}</small>
+                            <small class="fw-bold">{{motorcycle.fuelType}}</small>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted d-block">{{motorcycle.transmission}}</small>
+                            <small class="fw-bold">{{motorcycle.year}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Results -->
+    <div *ngIf="!isLoading && !error && filteredMotorcycles.length === 0" class="text-center py-5">
+        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+        <h4 class="text-muted">No motorcycles found</h4>
+        <p class="text-muted">Try adjusting your search criteria or category filter.</p>
+        <button class="btn btn-outline-primary" (click)="searchTerm = ''; selectedCategory = 'all'; filterMotorcycles()">
+            <i class="fas fa-refresh me-1"></i>
+            Clear Filters
+        </button>
+    </div>
+</div>
+
+<!-- Booking Modal -->
+<div *ngIf="showBookingModal" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-calendar-plus me-2"></i>
+                    Book Motorcycle Rental
+                </h5>
+                <button type="button" class="btn-close btn-close-white" (click)="closeBookingModal()"></button>
+            </div>
+            
+            <div class="modal-body">
+                <div *ngIf="selectedMotorcycle" class="row">
+                    <div class="col-md-4">
+                        <img [src]="selectedMotorcycle.imageFile || 'https://via.placeholder.com/300x200?text=No+Image'" 
+                             class="img-fluid rounded" [alt]="selectedMotorcycle.name">
+                    </div>
+                    <div class="col-md-8">
+                        <h5>{{selectedMotorcycle.brand}} {{selectedMotorcycle.name}}</h5>
+                        <p class="text-muted">{{selectedMotorcycle.description}}</p>
+                        
+                        <div class="row text-center mb-3">
+                            <div class="col-4">
+                                <small class="text-muted d-block">Hourly Rate</small>
+                                <strong class="text-primary">₱{{selectedMotorcycle.hourlyRate}}</strong>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-muted d-block">Daily Rate</small>
+                                <strong class="text-primary">₱{{selectedMotorcycle.dailyRate}}</strong>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-muted d-block">Weekly Rate</small>
+                                <strong class="text-primary">₱{{selectedMotorcycle.weeklyRate}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <form>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Customer Name *</label>
+                            <input type="text" class="form-control" [(ngModel)]="bookingData.customerName" name="customerName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" [(ngModel)]="bookingData.customerEmail" name="customerEmail" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" [(ngModel)]="bookingData.customerPhone" name="customerPhone" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Rental Duration *</label>
+                            <select class="form-select" [(ngModel)]="bookingData.rentalDuration" name="rentalDuration" (change)="onDurationChange()">
+                                <option value="hourly">Hourly</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Start Date *</label>
+                            <input type="date" class="form-control" 
+                                   [(ngModel)]="bookingData.rentalStartDate" 
+                                   name="rentalStartDate"
+                                   [min]="getMinDate()"
+                                   [max]="getMaxDate()"
+                                   (change)="onDateChange()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">End Date *</label>
+                            <input type="date" class="form-control" 
+                                   [(ngModel)]="bookingData.rentalEndDate" 
+                                   name="rentalEndDate"
+                                   [min]="getMinDate()"
+                                   [max]="getMaxDate()"
+                                   (change)="onDateChange()">
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <span class="fw-bold">{{bookingData.rentalDuration | titlecase}} Rental</span>
+                            </div>
+                            <div class="col-6 text-end">
+                                <h5 class="mb-0 text-primary">₱{{bookingData.totalAmount.toFixed(2)}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeBookingModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="confirmBooking()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div *ngIf="showConfirmationModal" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Booking Confirmed!
+                </h5>
+                <button type="button" class="btn-close btn-close-white" (click)="closeConfirmationModal()"></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    <h6 class="alert-heading">Your motorcycle rental has been confirmed!</h6>
+                    <p class="mb-0">You will receive a confirmation email shortly with all the details.</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-5"><strong>Motorcycle:</strong></div>
+                    <div class="col-7">{{bookingData.motorcycleName}}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5"><strong>Customer:</strong></div>
+                    <div class="col-7">{{bookingData.customerName}}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5"><strong>Email:</strong></div>
+                    <div class="col-7">{{bookingData.customerEmail}}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5"><strong>Phone:</strong></div>
+                    <div class="col-7">{{bookingData.customerPhone}}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5"><strong>Duration:</strong></div>
+                    <div class="col-7">{{bookingData.rentalDuration | titlecase}}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5"><strong>Start Date:</strong></div>
+                    <div class="col-7">{{bookingData.rentalStartDate}}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5"><strong>End Date:</strong></div>
+                    <div class="col-7">{{bookingData.rentalEndDate}}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5"><strong>Total Amount:</strong></div>
+                    <div class="col-7">
+                        <h5 class="text-primary mb-0">₱{{bookingData.totalAmount.toFixed(2)}}</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeConfirmationModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="printReceipt()">
+                    <i class="fas fa-print me-1"></i>
+                    Print Receipt
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Bon Rental</h5>
+                <p class="mb-0">Your trusted motorcycle rental partner since 2020.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    +63 123 456 7890
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-envelope me-2"></i>
+                    info@bonrental.com
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

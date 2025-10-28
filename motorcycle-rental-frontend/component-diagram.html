@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorcycle Rental Frontend - Component Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .diagram-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .instructions {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Motorcycle Rental Frontend - Component Diagram</h1>
+        
+
+        <div class="diagram-container">
+            <div class="mermaid">
+graph TD
+    %% Entry Point
+    Index[index.html] --> App[app.html<br/>AppComponent]
+    
+    %% Main App Structure
+    App --> Header[app-header<br/>Header Component]
+    App --> RouterOutlet[router-outlet<br/>RouterModule]
+    App --> Footer[app-footer<br/>Footer Component]
+    
+    %% Routed Components
+    RouterOutlet --> Home[Home<br/>HomeComponent]
+    RouterOutlet --> MotorcycleList[MotorcycleList<br/>MotorcycleListComponent]
+    RouterOutlet --> RentalDashboard[RentalDashboard<br/>RentalDashboardComponent]
+    
+    %% Component Interactions
+    Home --> MotorcycleService[MotorcycleRentalService]
+    MotorcycleList --> RentalBooking[RentalBooking<br/>RentalBookingComponent]
+    MotorcycleList --> RentalConfirmation[RentalConfirmation<br/>RentalConfirmationComponent]
+    RentalDashboard --> MotorcycleService
+    
+    %% Service Dependencies
+    MotorcycleService --> BackendAPI[Backend API<br/>localhost:8080]
+    
+    %% Data Storage
+    MotorcycleService --> LocalStorage[LocalStorage<br/>Browser Storage]
+    
+    %% Environment Configuration
+    MotorcycleService --> Environment[Environment<br/>Config]
+    
+    %% Styling
+    classDef entry fill:#ffeb3b,stroke:#f57f17,stroke-width:2px
+    classDef mainApp fill:#2196f3,stroke:#0d47a1,stroke-width:2px
+    classDef routed fill:#4caf50,stroke:#1b5e20,stroke-width:2px
+    classDef subComponent fill:#ff9800,stroke:#e65100,stroke-width:2px
+    classDef service fill:#9c27b0,stroke:#4a148c,stroke-width:2px
+    classDef external fill:#f44336,stroke:#b71c1c,stroke-width:2px
+    classDef storage fill:#607d8b,stroke:#263238,stroke-width:2px
+    
+    class Index entry
+    class App,Header,RouterOutlet,Footer mainApp
+    class Home,MotorcycleList,RentalDashboard routed
+    class RentalBooking,RentalConfirmation subComponent
+    class MotorcycleService service
+    class BackendAPI,Environment external
+    class LocalStorage storage
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>
